@@ -24,7 +24,7 @@ woman.name = 'jerry';
 console.log(man.getName());
 console.log(wonam.getName());
 ~~~~
-![ScreenShot](/screenshot/prototype_sample_01.png)
+![ScreenShot](/screenshot/prototype_sample_02.png)
 
 ### 프로토타입 링크 
 
