@@ -7,7 +7,23 @@
 - 프로토타입 객체는 **자신이 다른 객체의 원형**이 되는 객체이다.
 - new 연산자를 통해 정의된 함수로 객체를 생성(인스턴스화)하면, 생성된 객체는 프로토타입 객체를 가리키는 **숨은 링크(__proto__) 속성)**를 가지게 된다.
 - 숨은 링크를 통해 인스턴스 객체들이 공통의 멤버(속성, 메서드)에 접근할 수 있다. **공통의 멤버**는 결국 숨은 링크가 참조하는 프로토타입의 멤버에 해당된다.
-- 프로토타입의 특성을 이용하면 자바스크립트에서 **클래스를 흉내**내고 **상속**도 구현할 수 있다.
+- 프로토타입의 특성을 이용하면 자바스크립트에서 **클래스를 흉내**내고 **상속**도 구현할 수 있다.  
+~~~~javascript
+function Person() {}
+
+Person.prototype.getName = function() {
+  return this.name;
+}
+
+var man = new Person(), // 인스턴스 객체 1
+    woman = new Person(); // 인스턴스 객체 2
+
+man.name = 'tom';
+woman.name = 'jerry';
+
+console.log(man.getName());
+console.log(wonam.getName());
+~~~~
 
 ### 프로토타입 링크 
 
