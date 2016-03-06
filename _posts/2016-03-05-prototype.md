@@ -99,12 +99,12 @@ console.log(designer.getName()); // 'tom' 반환
   ~~~~
 
 ### 프로토타입과 상속
-- **프로토타입 체인**으로 상속 준비하기
-  - 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
+- 기본 상속
+  - 자바스크립트에서 **상속**은 코드 재사용 이슈에 해당된다.
+  - **프로토타입 체이닝(Prototype Chaining)** : 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
   - 코드에서 **Child.prototype = new Parent();** 에 해당
   - 이미지에서 **빨간색 링크**에 해당
   ~~~~javascript
-  function Parent(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
   }
@@ -117,7 +117,7 @@ console.log(designer.getName()); // 'tom' 반환
     return this.firstName + ' ' + this.lastName;
   };
 
-  Child.prototype = new Parent('Ryu', 'Sun'); // 상속을 구현한다.
+  Child.prototype = new Parent('Ryu', 'Sun'); // 상속
 
   Child.prototype.getName = function() {
     return this.lastName;
@@ -131,10 +131,24 @@ console.log(designer.getName()); // 'tom' 반환
   ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
 - 상속의 기법
   - 생성자 훔치기
+  ~~~~javascript
+  ~~~~
   - 조합 상속
+  - 생성자 훔치기
+  ~~~~javascript
+  ~~~~
   - **프로토타입 상속**
+  - 생성자 훔치기
+  ~~~~javascript
+  ~~~~
   - 기생 상속
+  - 생성자 훔치기
+  ~~~~javascript
+  ~~~~
   - 기생 조합 상속
+    - 생성자 훔치기
+  ~~~~javascript
+  ~~~~
 
 
 
