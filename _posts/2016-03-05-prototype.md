@@ -163,14 +163,14 @@ console.log(designer.getName()); // 'tom' 반환
   ~~~~
   - 프로토타입 공유 : 부모의 생성자를 호출하지 않고, 부모의 프로토타입을 자식의 프로토타입 객체로 할당한다. 단, 프로토타입 체인이 공유되므로 수정 시 부모, 자식 프로토타입이 모두 변경된다.  
   ~~~~javascript
-  function inherit(C, P) { // inherit 함수를 개선 1
+  function inherit(C, P) { // inherit 함수 개선 1
     //C.prototype = new P();
     C.prototype = P.prototype;
   }
   ~~~~
   - 임시 생성자 사용 : 프로토타입 체인의 장점은 유지하며, 부모 - 자식 사이의 직접적인 연결을 끊어 수정 시 영향을 주는 문제를 해결한다. 
   ~~~~javascript
-  function inherit(C, P) { // inherit 함수를 개선 2
+  function inherit(C, P) { // inherit 함수 개선 2
     
     //C.prototype = new P();
     //C.prototype = P.prototype;
