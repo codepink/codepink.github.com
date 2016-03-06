@@ -17,13 +17,13 @@
 ![ScreenShot](/screenshot/prototype/prototype_preview.jpg)
 
 ### 프로토타입 동작 원리
-- 프로토타입(prototype)의 생성부터 인스턴스 객체 생성 시 프로토타입과의 연결 고리를 설명한다. 프로토타입의 전체적인 동작 원리는 **프로토타입 체이닝(Prototype Chaining)**으로 표현된다.
+- 프로토타입(prototype) 객체 생성부터 인스턴스 생성 시 프로토타입 참조 등 내부적으로 연결된 링크들을 통해 동작을 설명한다.
 
 Step 1. 생성자 함수 정의
 ~~~~javascript
 function Person() {}
 ~~~~  
-![ScreenShot](/screenshot/prototype/prototype_chain_01.jpg)  
+![ScreenShot](/screenshot/prototype/prototype_logic_01.jpg)  
 
 Step 2. 프로토타입 객체에 멤버(속성, 메서드) 선언
 ~~~~javascript
@@ -32,14 +32,14 @@ Person.prototype.getName = function() { // 메서드
   return this.name;
 };
 ~~~~  
-![ScreenShot](/screenshot/prototype/prototype_chain_02.jpg)  
+![ScreenShot](/screenshot/prototype/prototype_logic_02.jpg)  
 
 Step 3. 인스턴스 생성 
 ~~~~javascript
 var developer = new Person(),
     designer = new Person();
 ~~~~  
-![ScreenShot](/screenshot/prototype/prototype_chain_03.jpg)  
+![ScreenShot](/screenshot/prototype/prototype_logic_03.jpg)  
 
 Step 4. 생성된 인스턴스와 인스턴스 객체가 프로토타입 객체를 정상적으로 참조하고 있는지 확인  
 ~~~~javascript
@@ -51,9 +51,9 @@ console.log(developer.hasOwnProperty('getName')); // false 반환
 console.log(Person.prototype.hasOwnProperty('name')); // true 반환
 console.log(Person.prototype.hasOwnProperty('getName')); // true 반환
 ~~~~  
-![ScreenShot](/screenshot/prototype/prototype_chain_04.jpg)  
+![ScreenShot](/screenshot/prototype/prototype_logic_04.jpg)  
 
-Step 5. 생성된 인스턴스에 속성을 프로토타입 체이닝을 이용해 속성 값을 출력해본다.
+Step 5. 생성된 인스턴스의 속성 값을 출력하면서 객체간 관계를 확인
 ~~~~javascript
 developer.name = 'jerry';
 
@@ -63,7 +63,7 @@ console.log(designer.hasOwnProperty('name')); // false 반환
 console.log(developer.getName()); // 'jerry' 반환
 console.log(designer.getName()); // 'tom' 반환
 ~~~~  
-![ScreenShot](/screenshot/prototype/prototype_chain_05.jpg)
+![ScreenShot](/screenshot/prototype/prototype_logic_05.jpg)
 
 
 ### 프로토타입을 이용해 커스텀 객체 생성하기 (클래스 흉내내기)
@@ -100,6 +100,9 @@ console.log(designer.getName()); // 'tom' 반환
 
 ### 프로토타입과 상속
 - **프로토타입 체인**으로 상속 준비하기
+  - 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
+  - 코드에서 **Child.prototype = new Parent();** 에 해당
+  - 이미지에서 **빨간색 링크**에 해당
   ~~~~javascript
   function Parent(firstName, lastName) {
     this.firstName = firstName;
@@ -125,6 +128,7 @@ console.log(designer.getName()); // 'tom' 반환
   console.log(developer.getName()); // 'Sunny' 출력
   console.log(developer.getFullName()); // 'Ryu Sunny' 출력
   ~~~~
+  ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
 - 상속의 기법
   - 생성자 훔치기
   - 조합 상속
