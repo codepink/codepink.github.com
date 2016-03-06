@@ -20,83 +20,83 @@
 - 프로토타입(prototype) 객체 생성부터 인스턴스 생성 시 프로토타입 참조 등 내부적으로 연결된 링크들을 통해 동작을 설명한다.
 
 Step 1. 생성자 함수 정의
-  ~~~~javascript
-  function Person() {}
-  ~~~~  
-  ![ScreenShot](/screenshot/prototype/prototype_logic_01.jpg)  
+~~~~javascript
+function Person() {}
+~~~~  
+![ScreenShot](/screenshot/prototype/prototype_logic_01.jpg)  
 
 Step 2. 프로토타입 객체에 멤버(속성, 메서드) 선언
-  ~~~~javascript
-  Person.prototype.name = 'tom'; // 속성
-  Person.prototype.getName = function() { // 메서드
-    return this.name;
-  };
-  ~~~~  
-  ![ScreenShot](/screenshot/prototype/prototype_logic_02.jpg)  
+~~~~javascript
+Person.prototype.name = 'tom'; // 속성
+Person.prototype.getName = function() { // 메서드
+  return this.name;
+};
+~~~~  
+![ScreenShot](/screenshot/prototype/prototype_logic_02.jpg)  
   
-  Step 3. 인스턴스 생성 
-  ~~~~javascript
-  var developer = new Person(),
-      designer = new Person();
-  ~~~~  
-  ![ScreenShot](/screenshot/prototype/prototype_logic_03.jpg)  
+Step 3. 인스턴스 생성 
+~~~~javascript
+var developer = new Person(),
+    designer = new Person();
+~~~~  
+![ScreenShot](/screenshot/prototype/prototype_logic_03.jpg)  
 
 Step 4. 생성된 인스턴스와 인스턴스 객체가 프로토타입 객체를 정상적으로 참조하고 있는지 확인  
-  ~~~~javascript
-  console.log(developer instanceof Person); // true 반환
-  console.log(designer instanceof Person); // true 반환
-  
-  console.log(developer.hasOwnProperty('name')); // false 반환
-  console.log(developer.hasOwnProperty('getName')); // false 반환
-  console.log(Person.prototype.hasOwnProperty('name')); // true 반환
-  console.log(Person.prototype.hasOwnProperty('getName')); // true 반환
-  ~~~~  
-  ![ScreenShot](/screenshot/prototype/prototype_logic_04.jpg)  
+~~~~javascript
+console.log(developer instanceof Person); // true 반환
+console.log(designer instanceof Person); // true 반환
+
+console.log(developer.hasOwnProperty('name')); // false 반환
+console.log(developer.hasOwnProperty('getName')); // false 반환
+console.log(Person.prototype.hasOwnProperty('name')); // true 반환
+console.log(Person.prototype.hasOwnProperty('getName')); // true 반환
+~~~~  
+![ScreenShot](/screenshot/prototype/prototype_logic_04.jpg)  
 
 Step 5. 생성된 인스턴스의 속성 값을 출력하면서 객체간 관계를 확인
-  ~~~~javascript
-  developer.name = 'jerry';
-  
-  console.log(developer.hasOwnProperty('name')); // true 반환
-  console.log(designer.hasOwnProperty('name')); // false 반환
-  
-  console.log(developer.getName()); // 'jerry' 반환
-  console.log(designer.getName()); // 'tom' 반환
-  ~~~~  
-  ![ScreenShot](/screenshot/prototype/prototype_logic_05.jpg)
+~~~~javascript
+developer.name = 'jerry';
+
+console.log(developer.hasOwnProperty('name')); // true 반환
+console.log(designer.hasOwnProperty('name')); // false 반환
+
+console.log(developer.getName()); // 'jerry' 반환
+console.log(designer.getName()); // 'tom' 반환
+~~~~  
+![ScreenShot](/screenshot/prototype/prototype_logic_05.jpg)
 
 
 ### 프로토타입을 이용해 커스텀 객체 생성하기 (클래스 흉내내기)
 - **생성자 패턴**과 **프로토타입 패턴**을 조합한다.
   - 생성자 패턴 : 생성자 함수 내에 프로퍼티와 메서드를 선언한다. 인스턴스가 생성될 떄마다 선언된 메서드가 생성되어 메모리를 많이 차지하게 되는 단점이 있다.
-    ~~~~javascript
-    function Building(floor) {
-      this.floor = floor;
-      this.getFloor = function() { ... }
-    }
-    
-    var b = new Building(10);
-    ~~~~
-    - 프로토타입 패턴 : 프로토타입 객체에 프로퍼티와 메서드를 선언한다.
-    ~~~~javascript
-    function Building() {}
-    
-    Building.prototype.getFloor = function() { ... }
-    
-    var b = new Building();
+  ~~~~javascript
+  function Building(floor) {
+    this.floor = floor;
+    this.getFloor = function() { ... }
+  }
+  
+  var b = new Building(10);
+  ~~~~
+  - 프로토타입 패턴 : 프로토타입 객체에 프로퍼티와 메서드를 선언한다.
+  ~~~~javascript
+  function Building() {}
+  
+  Building.prototype.getFloor = function() { ... }
+  
+  var b = new Building();
     ~~~~
   - **생성자 패턴**으로 **인스턴스의 프로퍼티**를 정의, **프로토타입 패턴**으로 **메서드와 공유 프로퍼티**를 정의한다. 이는 메모리를 절약하는 효과가 있다.
-    ~~~~javascript
-    function Building(floor) {
-      this.floor = floor;
-    }
-    
-    Building.prototype.getFloor = function() {
-      return this.floor;
-    }
-    
-    var b = new Building();
-    ~~~~
+  ~~~~javascript
+  function Building(floor) {
+    this.floor = floor;
+  }
+  
+  Building.prototype.getFloor = function() {
+    return this.floor;
+  }
+  
+  var b = new Building();
+  ~~~~
 
 ### 프로토타입과 상속
 - 기본 상속
@@ -104,83 +104,80 @@ Step 5. 생성된 인스턴스의 속성 값을 출력하면서 객체간 관계
   - **프로토타입 체이닝(Prototype Chaining)** : 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
   - 코드에서 **Child.prototype = new Parent();** 에 해당 (inherit 함수를 정의하여 사용할 수도 있다)
   - 이미지에서 **빨간색 링크**에 해당
-    ~~~~javascript
-      this.firstName = firstName;
-      this.lastName = lastName;
-    }
-  
-    function Child(lastName) {
-      this.lastName = lastName;
-    }
-  
-    Parent.prototype.getFullName = function() {
-      return this.firstName + ' ' + this.lastName;
-    };
-  
-    Child.prototype = new Parent('Ryu', 'Sun'); // 상속
-  
-    Child.prototype.getName = function() {
-      return this.lastName;
-    };
-  
-    var developer = new Child('Sunny');
-  
-    console.log(developer.getName()); // 'Sunny' 출력
-    console.log(developer.getFullName()); // 'Ryu Sunny' 출력
-    ~~~~
-    ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
+  ~~~~javascript
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  function Child(lastName) {
+    this.lastName = lastName;
+  }
+
+  Parent.prototype.getFullName = function() {
+    return this.firstName + ' ' + this.lastName;
+  };
+
+  Child.prototype = new Parent('Ryu', 'Sun'); // 상속
+
+  Child.prototype.getName = function() {
+    return this.lastName;
+  };
+
+  var developer = new Child('Sunny');
+
+  console.log(developer.getName()); // 'Sunny' 출력
+  console.log(developer.getFullName()); // 'Ryu Sunny' 출력
+  ~~~~
+  ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
 - 기본 상속 확장하기
   - 생성자 빌려쓰기 추가 : 기본 상속에서 매개변수(arguments)를 처리하지 못한다. 자식 생성자의 인스턴스가 생성될 때 넘어온 인자값을 부모 생성자에 전달하지 못하는 단점이 있어 이를 보완한다.
-    ~~~~javascript
-    function inherit(C, P) { // 기본 상속 구문을 inherit 함수로 정의
-      C.prototype = new P();
-    }
+  ~~~~javascript
+  function inherit(C, P) { // 기본 상속 구문을 inherit 함수로 정의
+    C.prototype = new P();
+  }
 
-    function Parent(firstName, lastName) {
-      this.firstName = firstName || arguments[0];
-      this.lastName = lastName || arguments[1];
-    }
+  function Parent(firstName, lastName) {
+    this.firstName = firstName || arguments[0];
+    this.lastName = lastName || arguments[1];
+  }
 
-    function Child(lastName) {
-      //this.lastName = lastName;
-      Parent.apply(this, arguments); // 생성자 빌려쓰기 추가
-    }
+  function Child(lastName) {
+    //this.lastName = lastName;
+    Parent.apply(this, arguments); // 생성자 빌려쓰기 추가
+  }
 
-    Parent.prototype.getFullName = function() {
-      return this.firstName + ' ' + this.lastName;
-    };
+  Parent.prototype.getFullName = function() {
+    return this.firstName + ' ' + this.lastName;
+  };
 
-    inherit(Child, Parent);
+  inherit(Child, Parent);
 
-    Child.prototype.getName = function() {
-      return this.lastName;
-    };
+  Child.prototype.getName = function() {
+    return this.lastName;
+  };
 
-    var developer = new Child('Ryu', 'Sunny');
+  var developer = new Child('Ryu', 'Sunny');
 
-    console.log(developer.getName()); // 'Sunny' 출력
-    console.log(developer.getFullName()); // 'Ryu Sunny' 출력
-    ~~~~
-  - 프로토타입 공유 : 부모의 생성자를 호출하지 않고, 부모의 프로토타입을 자식의 프로토타입 객체로 할당한다. 단, 프로토타입 체인이 공유되므로 수정 시 부모, 자식 프로토타입이 모두 변경된다.
-    ~~~~javascript
-    function inherit(C, P) { // inherit 함수를 개선 1
-      //C.prototype = new P();
-      C.prototype = P.prototype;
-    }
-    ~~~~
+  console.log(developer.getName()); // 'Sunny' 출력
+  console.log(developer.getFullName()); // 'Ryu Sunny' 출력
+  ~~~~
+  - 프로토타입 공유 : 부모의 생성자를 호출하지 않고, 부모의 프로토타입을 자식의 프로토타입 객체로 할당한다. 단, 프로토타입 체인이 공유되므로 수정 시 부모, 자식 프로토타입이 모두 변경된다.  
+  ~~~~javascript
+  function inherit(C, P) { // inherit 함수를 개선 1
+    //C.prototype = new P();
+    C.prototype = P.prototype;
+  }
+  ~~~~
   - 임시 생성자 사용 : 프로토타입 체인의 장점은 유지하며, 부모 - 자식 사이의 직접적인 연결을 끊어 수정 시 영향을 주는 문제를 해결한다. 
-    ~~~~javascript
-    function inherit(C, P) { // inherit 함수를 개선 2
-      
-      //C.prototype = new P();
-      //C.prototype = P.prototype;
+  ~~~~javascript
+  function inherit(C, P) { // inherit 함수를 개선 2
+    
+    //C.prototype = new P();
+    //C.prototype = P.prototype;
 
-      var F = function() {};
-      
-      F.prototype = P.prototype;
-      C.prototype = new F();
-    }
-    ~~~~
-
-
-
+    var F = function() {};
+    
+    F.prototype = P.prototype;
+    C.prototype = new F();
+  }
+  ~~~~
