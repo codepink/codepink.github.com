@@ -66,4 +66,71 @@ console.log(designer.getName()); // 'tom' 반환
 ![ScreenShot](/screenshot/prototype/prototype_chain_05.jpg)
 
 
+### 프로토타입을 이용해 커스텀 객체 생성하기 (클래스 흉내내기)
+- **생성자 패턴**과 **프로토타입 패턴**을 조합한다.
+  - 생성자 패턴 : 생성자 함수 내에 프로퍼티와 메서드를 선언한다. 인스턴스가 생성될 떄마다 선언된 메서드가 생성되어 메모리를 많이 차지하게 되는 단점이 있다.
+  ~~~~javascript
+  function Building(floor) {
+    this.floor = floor;
+    this.getFloor = function() { ... }
+  }
+  
+  var b = new Building(10);
+  ~~~~
+  - 프로토타입 패턴 : 프로토타입 객체에 프로퍼티와 메서드를 선언한다.
+  ~~~~javascript
+  function Building() {}
+  
+  Building.prototype.getFloor = function() { ... }
+  
+  var b = new Building();
+  ~~~~
+  - **생성자 패턴**으로 **인스턴스의 프로퍼티**를 정의, **프로토타입 패턴**으로 **메서드와 공유 프로퍼티**를 정의한다. 이는 메모리를 절약하는 효과가 있다.
+  ~~~~javascript
+  function Building(floor) {
+    this.floor = floor;
+  }
+  
+  Building.prototype.getFloor = function() {
+    return this.floor;
+  }
+  
+  var b = new Building();
+  ~~~~
+
+### 프로토타입과 상속
+- **프로토타입 체인**으로 상속 준비하기
+  ~~~~javascript
+  function Parent(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  function Child(lastName) {
+    this.lastName = lastName;
+  }
+
+  Parent.prototype.getFullName = function() {
+    return this.firstName + ' ' + this.lastName;
+  };
+
+  Child.prototype = new Parent('Ryu', 'Sun'); // 상속을 구현한다.
+
+  Child.prototype.getName = function() {
+    return this.lastName;
+  };
+
+  var developer = new Child('Sunny');
+
+  console.log(developer.getName()); // 'Sunny' 출력
+  console.log(developer.getFullName()); // 'Ryu Sunny' 출력
+  ~~~~
+- 상속의 기법
+  - 생성자 훔치기
+  - 조합 상속
+  - **프로토타입 상속**
+  - 기생 상속
+  - 기생 조합 상속
+
+
 
