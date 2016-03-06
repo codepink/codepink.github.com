@@ -66,7 +66,7 @@ console.log(designer.getName()); // 'tom' 반환
 ![ScreenShot](/screenshot/prototype/prototype_logic_05.jpg)
 
 
-### 프로토타입을 이용해 커스텀 객체 생성하기 (클래스 흉내내기)
+### 프로토타입을 이용해 커스텀 객체 생성하기
 - **생성자 패턴**과 **프로토타입 패턴**을 조합한다.
   - 생성자 패턴 : 생성자 함수 내에 프로퍼티와 메서드를 선언한다. 인스턴스가 생성될 떄마다 선언된 메서드가 생성되어 메모리를 많이 차지하게 되는 단점이 있다.
   ~~~~javascript
