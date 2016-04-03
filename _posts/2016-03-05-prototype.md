@@ -20,14 +20,14 @@
 ### 프로토타입 동작 원리
 - 프로토타입(prototype) 객체 생성부터 인스턴스 생성 시 프로토타입 참조 등 내부적으로 연결된 링크들을 통해 동작을 설명한다.
 
-#### Step 1. 생성자 함수 정의
+##### Step 1. 생성자 함수 정의
 
 ```javascript
 function Person() {}
 ```  
 ![ScreenShot](/screenshot/prototype/prototype_logic_01.jpg)  
 
-#### Step 2. 프로토타입 객체에 멤버(프로퍼티, 메서드) 선언
+##### Step 2. 프로토타입 객체에 멤버(프로퍼티, 메서드) 선언
 
 ```javascript
 Person.prototype.name = 'tom'; // 프로퍼티
@@ -37,7 +37,7 @@ Person.prototype.getName = function() { // 메서드
 ```  
 ![ScreenShot](/screenshot/prototype/prototype_logic_02.jpg)  
   
-#### Step 3. 인스턴스 생성 
+##### Step 3. 인스턴스 생성 
 
 ```javascript
 var developer = new Person(),
@@ -45,7 +45,7 @@ var developer = new Person(),
 ```  
 ![ScreenShot](/screenshot/prototype/prototype_logic_03.jpg)  
 
-#### Step 4. 생성된 인스턴스와 인스턴스 객체가 프로토타입 객체를 정상적으로 참조하고 있는지 확인  
+##### Step 4. 생성된 인스턴스와 인스턴스 객체가 프로토타입 객체를 정상적으로 참조하고 있는지 확인  
 
 ```javascript
 console.log(developer instanceof Person); // true
@@ -59,7 +59,7 @@ console.log(Person.prototype.hasOwnProperty('getName')); // true
 ```  
 ![ScreenShot](/screenshot/prototype/prototype_logic_04.jpg)  
 
-#### Step 5. 생성된 인스턴스의 속성 값을 출력하면서 객체간 관계를 확인
+##### Step 5. 생성된 인스턴스의 속성 값을 출력하면서 객체간 관계를 확인
 
 ```javascript
 developer.name = 'jerry';
