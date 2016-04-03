@@ -12,7 +12,7 @@
 ### prototype Vs. [[Prototype]]
 - 실제 코드 상에서 사용되는 프로토타입은 2가지로 구분된다.
 - (대다수가 잘못 알고 있는) ```prototype``` 프로퍼티는 커스텀 객체에서 사용되는 일반 프로퍼티와는 다르다. 생성자 함수가 선언될 때 ```constructor``` 프로퍼티로 생성자 함수를 참조하면서 새로 생성되는 **객체**이다.
-- 생성자 함수에 의해 인스턴스화된 객체들은 prototype을 참조하는 포인터가 생성되며 ```[[Prototype]]```이라고 부른다. FF, Safari, Chrome에서는 ```\_\_proto\_\_``` 프로퍼티를 지원하며 브라우저 상에서 직접 프로퍼티의 접근이 가능하다.
+- 생성자 함수에 의해 인스턴스화된 객체들은 prototype을 참조하는 포인터가 생성되며 ```[[Prototype]]```이라고 부른다. FF, Safari, Chrome에서는 ```__proto__``` 프로퍼티를 지원하며 브라우저 상에서 직접 프로퍼티의 접근이 가능하다.
 - 즉 ```[[Prototype]]```은 prototype을 참조하는 것이지, 생성자 함수를 직접적으로 참조하는 것이 아니다.
 ![ScreenShot](/screenshot/prototype/prototype_preview.jpg)
 
