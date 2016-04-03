@@ -113,8 +113,8 @@ console.log(designer.getName()); // 'tom'
 ### 프로토타입과 상속
 - 기본 상속
   - 자바스크립트에서 **상속**은 코드 재사용 이슈에 해당된다.
-  - **프로토타입 체이닝(Prototype Chaining)** : 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
-  - 코드에서 **Child.prototype = new Parent();** 에 해당 (inherit 함수를 정의하여 사용할 수도 있다)
+  - **프로토타입 체이닝(prototype chaining)** : 자식 생성자 함수의 인스턴스가 참조하는 프로토타입 객체를 부모 생성자 함수의 인스턴스로 할당한다.
+  - 예제에서 ```Child.prototype = new Parent();```에 해당 (```inherit()``` 함수를 정의하여 사용할 수도 있다)
   - 이미지에서 **빨간색 링크**에 해당
   
   ```javascript
@@ -130,16 +130,16 @@ console.log(designer.getName()); // 'tom'
     return this.firstName + ' ' + this.lastName;
   };
 
-  Child.prototype = new Parent('Ryu', 'Sun'); // 상속
+  Child.prototype = new Parent('nu', 'codeblack'); // 상속
 
   Child.prototype.getName = function() {
     return this.lastName;
   };
 
-  var developer = new Child('Sunny');
+  var developer = new Child('codepink');
 
-  console.log(developer.getName()); // 'Sunny' 출력
-  console.log(developer.getFullName()); // 'Ryu Sunny' 출력
+  console.log(developer.getName()); // 'codepink'
+  console.log(developer.getFullName()); // 'nu codepink'
   ```
   ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
 
@@ -171,10 +171,10 @@ console.log(designer.getName()); // 'tom'
     return this.lastName;
   };
 
-  var developer = new Child('Ryu', 'Sunny');
+  var developer = new Child('nu', 'codepink');
 
-  console.log(developer.getName()); // 'Sunny' 출력
-  console.log(developer.getFullName()); // 'Ryu Sunny' 출력
+  console.log(developer.getName()); // 'codepink'
+  console.log(developer.getFullName()); // 'nu codepink'
   ```
   
   - 프로토타입 공유 : 부모의 생성자를 호출하지 않고, 부모의 프로토타입을 자식의 프로토타입 객체로 할당한다. 단, 프로토타입 체인이 공유되므로 수정 시 부모, 자식 프로토타입이 모두 변경된다.  
