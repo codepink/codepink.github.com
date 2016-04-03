@@ -130,16 +130,16 @@ console.log(designer.getName()); // 'tom'
     return this.firstName + ' ' + this.lastName;
   };
 
-  Child.prototype = new Parent('nu', 'codeblack'); // 상속
+  Child.prototype = new Parent('Ryu', 'Sun'); // 상속
 
   Child.prototype.getName = function() {
     return this.lastName;
   };
 
-  var developer = new Child('codepink');
+  var developer = new Child('Sunny');
 
-  console.log(developer.getName()); // 'codepink'
-  console.log(developer.getFullName()); // 'nu codepink'
+  console.log(developer.getName()); // 'Sunny'
+  console.log(developer.getFullName()); // 'Ryu Sunny'
   ```
   ![ScreenShot](/screenshot/prototype/prototype_chain.jpg)
 
@@ -171,10 +171,10 @@ console.log(designer.getName()); // 'tom'
     return this.lastName;
   };
 
-  var developer = new Child('nu', 'codepink');
+  var developer = new Child('Ryu', 'Sunny');
 
-  console.log(developer.getName()); // 'codepink'
-  console.log(developer.getFullName()); // 'nu codepink'
+  console.log(developer.getName()); // 'Sunny'
+  console.log(developer.getFullName()); // 'Ryu Sunny'
   ```
   
   - 프로토타입 공유 : 부모의 생성자를 호출하지 않고, 부모의 프로토타입을 자식의 프로토타입 객체로 할당한다. 단, 프로토타입 체인이 공유되므로 수정 시 부모, 자식 프로토타입이 모두 변경된다.  
